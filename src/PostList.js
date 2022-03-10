@@ -5,8 +5,11 @@ const PostList = () => {
     const [posts, setPosts] = useState([]);
 
     useEffect(async () => {
-        const posts = await getPosts();
+        const {data, error} = await getPosts();
+        console.log(data.posts, error)
+        const { posts } = data
         setPosts(posts);
+        if (error.length) {console.error(error)}
     }, []);
 
     return (
