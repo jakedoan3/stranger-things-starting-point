@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { newUser, testAuthentication } from './api';
 
 
-const RegisterForm = () => {
+const RegisterForm = (props) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [passwordAgain, setPasswordAgain] = useState('')
@@ -17,7 +17,8 @@ const RegisterForm = () => {
             return
         }
         const userSubmit = await newUser(username, password)
-        
+        console.log(userSubmit)
+        props.setHoldToken(userSubmit.data.token)
     };
 
     return (

@@ -37,7 +37,7 @@ export const newUser = async (username, password) => {
 export const testAuthentication = async () => {
     // URL that we're gonna reach out to
     const url = `https://strangers-things.herokuapp.com/api/2112-FTB-ET-WEB-PT/api/2112-FTW-ET-WEB-PT/test/me`;
-    const token = localStorage.getItem(data.token)
+    const token = localStorage.getItem('stranger_things_JWT')
     console.log(token)
 
     // Grab the body given back by the API
@@ -55,3 +55,32 @@ export const testAuthentication = async () => {
 
     return json;
 };
+
+export const logIn = async (username, password) => {
+    const url = 'https://strangers-things.herokuapp.com/api/2112-FTB-ET-WEB-PT/users/login';
+    try{
+        // Grab the body given back by the API
+    const response = await fetch(url, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            user: {
+                username: `${username}`,
+                password: `${password}`
+            }
+        })
+    });
+    console.log(response)
+
+    // Take the body we got back and convert it to JS Object
+    const json = await response.json();
+    console.log(json)
+
+    // TOKEN : json.data.token
+    localStorage.setItem('stranger_things_JWT', json.data.token);
+
+    return json;
+    } catch (error){console.error(error, "Something's wrong with registering the user!")}
+} 
