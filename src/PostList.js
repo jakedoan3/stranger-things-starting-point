@@ -6,7 +6,6 @@ const PostList = () => {
 
     useEffect(async () => {
         const {data, error} = await getPosts();
-        console.log(data.posts, error)
         const { posts } = data
         setPosts(posts);
         if (error.length) {console.error(error)}
@@ -15,9 +14,9 @@ const PostList = () => {
     return (
         <div>
             {posts.map(post =>
-                <div key={post.id}>
+                <div key={post._id}>
                     <h2>{post.title}</h2>
-                    <p>{post.body}</p>
+                    <p>{post.description}</p>
                 </div>
             )}
         </div>
