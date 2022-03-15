@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { logIn } from './api';
+import { logIn, logOut } from './api';
 
-//store token on state? how do we know if token/login credentials are being held?
-//react router / link?
-//how does log out work w/ token?
-//confusion about helper functions
-//what functions etc should go on components vs on api?
+//how to remove token for logout function?
+//how to format fetch object for login/out?
 
 
 const Login = (props) => {
@@ -15,30 +12,45 @@ const Login = (props) => {
     const logInUser = async (event) => {
         event.preventDefault()
         // URL that we're gonna reach out to
-        const url = `https://strangers-things.herokuapp.com/api/2112-FTB-ET-WEB-PT/users/register`;
-        console.log(username, password)
+        const url = `https://strangers-things.herokuapp.com/api/2112-FTB-ET-WEB-PT/users/login`;
         const userSubmit = await logIn(username, password)
-        console.log(userSubmit)
-        props.setHoldToken(userSubmit.data.token)
+        console.log("usersubmit is ", userSubmit)
+        props.setIsLoggedIn(true)
+        // props.setHoldToken(userSubmit.data.token)
     };
 
+    const logOut = () => {
+        localStorage.removeItem('stranger_things_JWT');
+        props.setIsLoggedIn(false)
+    } 
+    console.log(props.isLoggedIn)
     return (
         <div>
-            <h3>Log In</h3>
-            <input
-            placeholder='Username*'
-            value={username}
-            onChange={(event) => setUsername(event.target.value)}
-            ></input>
-            <input
-            placeholder='Password*'
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            ></input>
-            <button
-            onClick={logInUser}
-            >Log In</button>
-            
+            { props.isLoggedIn ? 
+            <>
+                <h3>Log In</h3>
+                <button
+                onClick={logOut}
+                >Log Out</button>
+            </>
+            :  
+            <>
+                <h3>Log In</h3>
+                <input
+                placeholder='Username*'
+                value={username}
+                onChange={(event) => setUsername(event.target.value)}
+                ></input>
+                <input
+                placeholder='Password*'
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                ></input>
+                <button
+                onClick={logInUser}
+                >Log In</button> 
+            </>
+            }
         </div>
     );
 };

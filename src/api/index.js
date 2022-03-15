@@ -84,3 +84,30 @@ export const logIn = async (username, password) => {
     return json;
     } catch (error){console.error(error, "Something's wrong with registering the user!")}
 } 
+
+// export const makeHeaders = async () => {
+//     const url = 'https://strangers-things.herokuapp.com/api/2112-FTB-ET-WEB-PT/users/login';
+//     try{
+//         // Grab the body given back by the API
+//     const response = await fetch(url, {
+//         method: "POST",
+//         headers: {
+//             'Content-Type': 'application/json',
+//             'Authentication' : `Bearer ${localStorage.getItem('stranger_things_JWT')}`
+//         },
+//     });
+
+//     // Take the body we got back and convert it to JS Object
+//     const json = await response.json();
+//     console.log(json)
+
+//     // TOKEN : json.data.token
+//     localStorage.setItem('stranger_things_JWT', json.data.token);
+
+//     return json;
+//     } catch (error){console.error(error, "Something's wrong with registering the user!")}
+// } 
+
+
+
+
