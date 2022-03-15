@@ -82,7 +82,7 @@ export const logIn = async (username, password) => {
     localStorage.setItem('stranger_things_JWT', json.data.token);
 
     return json;
-    } catch (error){console.error(error, "Something's wrong with registering the user!")}
+    } catch (error){console.error(error, "Username or Password is incorrect.")}
 } 
 
 // export const makeHeaders = async () => {

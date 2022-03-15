@@ -8,6 +8,7 @@ import { logIn, logOut } from './api';
 const Login = (props) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [errorMessages, setErrorMessages] = useState([])
 
     const logInUser = async (event) => {
         event.preventDefault()
@@ -15,7 +16,13 @@ const Login = (props) => {
         const url = `https://strangers-things.herokuapp.com/api/2112-FTB-ET-WEB-PT/users/login`;
         const userSubmit = await logIn(username, password)
         console.log("usersubmit is ", userSubmit)
-        props.setIsLoggedIn(true)
+        if (userSubmit) {props.setIsLoggedIn(true)}
+        else {
+            console.error("Unable to Login")
+            setErrorMessages([...errorMessages, "Username or Password is incorrect. Please try again."
+            ])
+        }
+        
         // props.setHoldToken(userSubmit.data.token)
     };
 
@@ -49,6 +56,7 @@ const Login = (props) => {
                 <button
                 onClick={logInUser}
                 >Log In</button> 
+                {errorMessages.length ? errorMessages.map((error) => error): null}
             </>
             }
         </div>
