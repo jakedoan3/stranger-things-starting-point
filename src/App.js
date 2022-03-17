@@ -6,6 +6,7 @@ import RegisterForm from "./RegisterForm";
 import Login from "./Login";
 import {BrowserRouter, Route, Switch, Link} from "react-router-dom"
 import Posts from "./posts";
+import Profile from "./Profile";
 
 const App = () => {
   const [holdToken, setHoldToken] = useState('')
@@ -24,28 +25,88 @@ const App = () => {
   },[posts])
   
   return (
-    <BrowserRouter>
-      <>
-        <Route path='/'>
-          <Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
-          <RegisterForm holdToken={holdToken} setHoldToken={setHoldToken}/>
-        </Route>
+    <div>
+      {/* <Profile/> */}
+      <Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
+      <Posts posts={posts} setPosts={setPosts}/>
+      <RegisterForm holdToken={holdToken} setHoldToken={setHoldToken}/>
+      <PostList posts={posts} setPosts={setPosts}/>
+      
 
-        <Posts posts={posts} setPosts={setPosts}/>
-        
-        <Route path='/login'>
-          <Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
-        </Route>
+    </div>
+  )
+    // <BrowserRouter>
+    //   {isLoggedIn ? 
+    //   <>
+    //     <div id='navbar'>
+    //       {/* <Link to='/profile'></Link> */}
+    //       <Link to='/posts'>Posts</Link>
+    //       <Link to='/login'>Log Out</Link>
+    //     </div>
+    //     <div id='main'>
+    //       {/* <Route path='/profile'>
+    //         <Profile />
+    //       </Route> */}
 
-        <PostList posts={posts} setPosts={setPosts}/>
+    //       <Route path='/posts'>
+    //         <PostList />
+    //       </Route>
+          
+    //       <PostList />
 
-        <Route path='/register'>
-          <RegisterForm holdToken={holdToken} setHoldToken={setHoldToken}/>
-        </Route>
-        
-      </>
-    </BrowserRouter>
-  );
+    //       <Posts posts={posts} setPosts={setPosts}/>
+
+    //       <Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+
+    //       <Route path='/login'>
+    //         <Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+    //       </Route>
+
+    //       <Route exact path='/'>
+    //         {/* <Profile /> */}
+    //       </Route>
+
+    //     </div>
+
+    //   </>
+            
+    //   : 
+      
+    //   <>
+    //     <div id='navbar'>
+    //       <Link to='/Register'>Register</Link>
+    //       <Link to='/posts'>Posts</Link>
+    //       <Link to='/login'>Log In</Link>
+    //     </div>
+
+    //     <div id='main'>
+    //       <Route path='/login'>
+    //         <Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
+    //       </Route>
+
+    //       <Route path='/posts'>
+    //         <PostList />
+    //       </Route>
+
+    //       <Route path='/register'>
+    //         <RegisterForm holdToken={holdToken} setHoldToken={setHoldToken}/>
+    //       </Route>
+
+    //       <Route exact path='/'>
+    //         <Login isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>
+    //       </Route>
+
+    //     </div>
+    //   </>
+      
+    //   }
+    // </BrowserRouter>
+    
 }
 
+
+                
+
 export default hot(App);
+
+

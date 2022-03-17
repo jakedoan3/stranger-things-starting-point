@@ -126,7 +126,7 @@ export const newPost = async (title, description, price, location, willDeliver) 
                 description: description,
                 price: price,
                 location: location,
-                willDeliver: false
+                willDeliver: willDeliver
             }
         })
     });
@@ -139,4 +139,17 @@ export const newPost = async (title, description, price, location, willDeliver) 
 }
 
 
-
+export const getAuthPosts = async () => {
+    const url = 'https://strangers-things.herokuapp.com/api/2112-FTB-ET-WEB-PT/posts';
+    const token = localStorage.getItem('stranger_things_JWT')
+        // Grab the body given back by the API
+    const response = await fetch(url, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+    })
+    const json = await response.json()
+    return json;
+}

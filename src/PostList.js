@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { getPosts } from './api';
+import { getAuthPosts, getPosts } from './api';
 
 const PostList = (props) => {
     const { posts, setPosts } = props
 
     useEffect(async () => {
-        const {data, error} = await getPosts();
+        const {data, error} = await getAuthPosts();
         const { posts } = data
         setPosts(posts);
         if (error) {console.error(error)}
