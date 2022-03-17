@@ -13,7 +13,6 @@ const Login = (props) => {
     const logInUser = async (event) => {
         event.preventDefault()
         // URL that we're gonna reach out to
-        const url = `https://strangers-things.herokuapp.com/api/2112-FTB-ET-WEB-PT/users/login`;
         const userSubmit = await logIn(username, password)
         console.log("usersubmit is ", userSubmit)
         if (userSubmit) {props.setIsLoggedIn(true)}
@@ -23,14 +22,14 @@ const Login = (props) => {
             ])
         }
         
-        // props.setHoldToken(userSubmit.data.token)
+
     };
 
     const logOut = () => {
         localStorage.removeItem('stranger_things_JWT');
         props.setIsLoggedIn(false)
     } 
-    console.log(props.isLoggedIn)
+
     return (
         <div>
             { props.isLoggedIn ? 

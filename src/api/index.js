@@ -109,5 +109,34 @@ export const logIn = async (username, password) => {
 // } 
 
 
+export const newPost = async (title, description, price, location, willDeliver) => {
+    const url = 'https://strangers-things.herokuapp.com/api/2112-FTB-ET-WEB-PT/posts';
+    const token = localStorage.getItem('stranger_things_JWT')
+    try{
+        // Grab the body given back by the API
+    const response = await fetch(url, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+            post: {
+                title: title,
+                description: description,
+                price: price,
+                location: location,
+                willDeliver: false
+            }
+        })
+    });
+    console.log(response)
+    const json = await response.json();
+    console.log(json)
+
+    return json;
+    } catch (error){console.error(error, "Post is not sending to API.")}
+}
+
 
 
