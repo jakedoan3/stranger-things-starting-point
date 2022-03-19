@@ -5,8 +5,6 @@ import { sendMessage } from './api';
 const Message = (props) => {
     const postId = props.postId
     const [content, setContent] = useState('')
-    //when send is clicked, take the input content+id of post we're in
-    //and send to messages array for post
     const createMessage = async (event) => {
         event.preventDefault()
         try {

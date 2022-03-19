@@ -11,7 +11,7 @@ const App = () => {
   const [holdToken, setHoldToken] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [posts, setPosts] = useState([]);
-  console.log(posts)
+  
   //useEffect runs to re-render the page when data changes
   useEffect(() => {
     const token = localStorage.getItem("stranger_things_JWT");

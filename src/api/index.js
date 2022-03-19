@@ -8,6 +8,7 @@ export const getPosts = async () => {
 export const newUser = async (username, password) => {
     const url = 'https://strangers-things.herokuapp.com/api/2112-FTB-ET-WEB-PT/users/register';
     try{
+
     const response = await fetch(url, {
         method: "POST",
         headers: {
@@ -170,8 +171,7 @@ export const getMe = async () => {
     return json;
 }
 
-export const handleDelete = async (idToDelete) => {
-    console.log(idToDelete);
+export const deletePost = async (idToDelete) => {
     const url = `https://strangers-things.herokuapp.com/api/2112-FTB-ET-WEB-PT/posts/${idToDelete}`;
     const token = localStorage.getItem("stranger_things_JWT");
     const response = await fetch(url, {
@@ -182,9 +182,5 @@ export const handleDelete = async (idToDelete) => {
       },
     });
     const data = await response.json();
-    console.log(data);
-    if (data) {
-      const newPosts = posts.filter((post) => post.id !== idToDelete);
-      setPosts(newPosts);
-    }
-};
+    return data
+}
