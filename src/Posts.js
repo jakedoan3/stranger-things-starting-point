@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { newPost } from './api';
 
-//probably similar to login component
+
 
     const Posts = (props) => {
         const [title, setTitle] = useState('')

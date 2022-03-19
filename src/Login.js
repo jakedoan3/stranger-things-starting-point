@@ -31,10 +31,10 @@ const Login = (props) => {
     } 
 
     return (
-        <div>
+        <div style= {{ display: 'flex', alignItems: 'center'}}>
             { props.isLoggedIn ? 
             <>
-                <h3>Log In</h3>
+                <h3>Log Out</h3>
                 <button
                 onClick={logOut}
                 >Log Out</button>
